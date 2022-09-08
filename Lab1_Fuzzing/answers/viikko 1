@@ -1,0 +1,21 @@
+1a) echo "Fuzztest 1337" | radamsa -n 10
+1b)radamsa -o fuzz%n -n 100 tehtava1b; bc fuzz-* < /dev/null; test $? -gt 127 && break
+
+2a) clang example.c -fsanitize=address -O1
+Memory leak is the error. There is something missing in the program's memory allocation.
+
+2b)
+./configure CC="afl-gcc" --prefix=$HOME/unrtf
+
+fl-fuzz -i ~/Desktop/unrtf-0.21.5/input_folder/ -o ~/Desktop/unrtf-0.21.5/output_folder/ ~/unrtf/bin/unrtf
+
+
+I think total saved crashes is important, because based on them u can investigate unique crashes.
+Last new find is important because if it doesnt find anything new, the settings may be wrong.
+All the red text is important, because the program write meant it to be the "important" colour text.
+
+
+2c)
+There was Memcheck memory error detected, so there was memory related problem. Invalid read size of 8, which means the process was trying to read memory which was outside of memory addresses that 
+are available for processes. Address 0x11 is not stack'd which balgrind tried to access memory at 0x11 but that address wasn't recently freed and is not memory allocated for the process.
+Process was terminated
