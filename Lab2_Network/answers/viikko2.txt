@@ -1,0 +1,37 @@
+1)
+http://localhost:3000/rest/products/search?q=apple'
+
+The reason why is caused was because sql uses '' for strings and when we inject ' inside the
+string ends too early and causes Syntax error.
+
+ "SELECT * FROM Products WHERE ((name LIKE '"SEARCHRESULT"' OR description LIKE '"SEARCHRESULT"') AND deletedAt IS NULL) ORDER BY name"
+
+
+DELETED ITEM:
+The sql check if deletedAt IS NULL, to check if item should be displayed or not.
+
+ ' OR description LIKE '% ')) ORDER BY name--
+
+The attack works since we comment the rest of the sql command away, so it will never get to deletedAt IS NULL command.
+
+
+LOGIN:
+ ' OR TRUE --
+
+ it ends the email field and uses OR TRUE to log-in to the site. It also comments the rest of sql away.
+
+ It did login as admin.
+
+
+ SCOREBOARD:
+ I ctrl + f "score" in the main.js and found the path.
+
+ ADMIN PAGE:
+ http://localhost:3000/#/administration
+
+ XSS attacks:
+Sql injections get the data from databases but the xss attacks redicts users to websites where attacker can steal data from them.
+
+Preventing XSS attacks:
+In PHP you can use inbuilt function "htmlentities" that can be used to encode HTML entities. There are also third party libraries which are used to prevent xss attacks.
+Javascript doesnt support html, so there should be own made function HTML encoder.
